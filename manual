@@ -1,0 +1,47 @@
+
+RULE N1 - please only use one of ALU, LOAD, STORE operations or function in each instruction or else Assemblator will get angry and kick you out
+
+to ensure that nothing goes wrong please type each assemble instruction on a single line
+
+note that every register is only 4 bytes in size
+
+Assemblator doesn't support fractions yet...
+
+nested defines are not supported too(but can be supported easily actually)
+
+please, dont use negative numbers in store type operations like M[x] = -5. Store negative numbers in registers first.
+
+you don't need to worry about case sensitivity and code styling. use as many whitespaces as you wish on a single line. Assemblator won't be confused  with such simple tricks :)
+ 
+---------------------------------------------------------
+
+			   List of all supported commands:
+
+Rx - accesses the information that is stored in xth register
+
+PC - accesses special purpose register which stores the address of next instruction that should be executed. stands for program counter
+
+SP - accesses special purpose register which stores lowest memory address that is relevant to execution. stands for stack pointer
+
+RV - accesses special purpose register which stores the value that should be returned. stands for return value
+
+M[x] - accesses memory at the address x
+
+Branch commands - "BEQ/BNE/BGE/BGT/BLE/BLT arg1, arg2 PC + x" where x is number of bytes it must skip if the branch expression evaluates to true  
+
+JMP - "JMP PC - x" where x is number of bytes of instructions that must be skipped
+
+CALL - "CALL <x>" where x is the name of the function that should be called
+
+Basic arithmetic operations - "+", "-", "*", "/"
+
+cast command - ".x" followed by any memory(Ry/M[y]/y). takes only x bytes from that memory. x can be 1 or 2.
+
+DEFINE - "DEFINE <x>"  where x is the name of the function you want to define. followed by the body and END_DEF command.
+(!note - don't forget to end function definition with END_DEF command) 
+
+RET -  ends the function. it's a must at the end of every defined function.
+
+PRINT - "PRINT <x>" where x is Ry or M[y] or y. evaluates x and prints it in console. (hopefully)works with cast commands too (.1 , .2).
+
+RESET - resets instructions, also PC and SP values. usually used in Assemblator -l mode.
